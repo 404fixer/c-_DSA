@@ -1,0 +1,1 @@
+{"name":"Local: checkSuffle","url":"/Users/govindtomer/Desktop/Programming/c++/string/checkSuffle.cpp","tests":[{"id":1613195897728,"input":"ab\ncd\nacbg","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/govindtomer/Desktop/Programming/c++/string/checkSuffle.cpp","group":"local","local":true}

@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "cstring": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "stack": "cpp"
+    },
+    "editor.formatOnSave": true
+}

@@ -1,0 +1,139 @@
+drop database university;
+create database university;
+use university;
+
+create table students (
+	ssn int auto_increment,
+    name varchar(100),
+    city varchar(100),
+    age int,
+    major varchar(20),
+    primary key(ssn)
+);
+
+insert into students(name, city, age, major) values('Manav Singh', 'Delhi', 24, 'CS');
+insert into students(name, city, age, major) values('Shivam Sisodiya', 'Patna', 24, 'IT');
+insert into students(name, city, age, major) values('Gourav', 'Pune', 24, 'ECE');
+insert into students(name, city, age, major) values('Rishabh', 'Delhi', 24, 'CS');
+insert into students(name, city, age, major) values('Prashant', 'Mumbai', 19, 'CS');
+
+create table course (
+	crscode int,
+    name varchar(100),
+    primary key(crscode)
+);
+
+create table registered(
+	ssn int,
+    crscode int,
+    semester int,
+    year int,
+    
+    FOREIGN KEY (ssn) REFERENCES students(ssn),
+    FOREIGN KEY (crscode) REFERENCES course(crscode)
+    
+);
+
+CREATE TABLE department (
+    deptcode INT,
+    name VARCHAR(100),
+    
+    primary key(deptcode)
+);
+
+select name from students where major = 'CS';
+
+
+
+
+
+drop database moviedb;
+create database moviedb;
+use moviedb;
+
+create table movie(
+	title varchar(200),
+    year int,
+    length time,
+    inColor varchar(10),
+    studioName varchar(200),
+    producer varchar(200),
+    
+    primary key(title, year)
+);
+
+create table starin(
+	movieTitle varchar(200),
+   movieYear int,
+   starName varchar(200) default 'unnamed',
+   
+   foreign key(movieTitle, movieYear) references movie(title, year),
+   
+   primary key(starName)
+   
+);
+
+create table movieStar(
+	name varchar(200),
+    address varchar(255),
+    gender varchar(20),
+    birthdate date,
+    
+    foreign key(name) references starin(starName)
+);
+
+create table movieExec(
+	name varchar(200),
+    address varchar(200),
+    certNum int,
+    netWorth int,
+    
+    primary key(name)
+);
+
+create table studio(
+	name varchar(200),
+    address varchar(200),
+    presC int,
+    
+    foreign key(name) references movieExec(name)
+);
+
+insert into movie values('Batman Begins', 2006, '02:00:00', 'yes', 'Nolan Studios', 'Christopher Nolan');
+insert into movie values('The Dark Knight', 1980, '01:00:00', 'no', 'Nolan Studios', 'Christopher Nolan');
+insert into movie values('Avengers Endgame', 2007, '01:00:00', 'yes', 'MGM Studios', 'stan lee');
+insert into movie values('Iron Man Love', 1980, '02:00:00', 'yes', 'MGM Studios', 'stan lee');
+insert into movie values('Terms of Endearment', 2005, '02:00:00', 'no', 'MGM Studios', 'stan lee');
+
+insert into starin values('Batman Begins', 2006, 'Sandra Bullocks');
+insert into starin values('The Dark Knight', 1980, 'RDJ');
+insert into starin values('Avengers Endgame', 2007, 'Chris Evans');
+insert into starin values('Iron Man Love', 1980, 'Will Smith');
+insert into starin values('Terms of Endearment', 2005, 'Sunny Deol');
+
+insert into movieStar values('Sandra Bullocks', 'America', 'Female', '1990-08-21');
+insert into movieStar values('RDJ', 'Australia', 'Male', '1992-08-21');
+insert into movieStar values('Chris Evans', 'Miami', 'Male', '1990-08-19');
+insert into movieStar values('Will Smith', 'America', 'Male', '1996-08-23');
+insert into movieStar values('Sunny Deol', 'Miami', 'Male', '1997-08-24');
+
+insert into movieExec values('MGM Studios', 'USA', 2004, 10000000);
+insert into movieExec values('Nolan Studios', 'Africa', 2003, 20000000);
+insert into movieExec values('Warner Studios', 'India', 2007, 1000);
+
+insert into studio values ('MGM Studios', 'USA', 2004);
+insert into studio values('Nolan Studios', 'Africa', 2003);
+insert into studio values('Warner Studios', 'India', 2007);
+
+select address from studio where name = 'MGM Studios';
+select birthdate from movieStar where name = 'Sandra Bullocks';
+SELECT starName FROM starin WHERE movieYear = 1980 OR movieTitle LIKE '%Love%';
+select * from movieExec where netWorth >= 10000000;
+select * from movieStar where address = 'Miami' or gender = 'Female' or address LIKE '%Miami%';
+SELECT name  FROM movieStar, starin WHERE gender = 'Male'  AND name = starName AND movieTitle = 'Terms of Endearment';
+
+
+
+
+
+

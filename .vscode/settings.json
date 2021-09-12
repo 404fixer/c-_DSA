@@ -5,7 +5,9 @@
         "cstring": "cpp",
         "*.tcc": "cpp",
         "string": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "bitset": "cpp",
+        "set": "cpp"
     },
     "editor.formatOnSave": true
 }

@@ -55,15 +55,6 @@ void precision(int a) {cout << setprecision(a) << fixed;}
 const int N = (1*(1e5)) + 5;
 #define int ll
 
-int solve(int a[], int i, int n, int sum1, int sum2) {
-    if(i == n) {
-        if(sum1 == sum2) return 1;
-        else return 0;
-    }
-
-    return ((solve(a, i+1, n, sum1+a[i], sum2)) || solve(a, i+1, n, sum1, sum2+a[i]));
-}
-
 int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -72,14 +63,14 @@ int32_t main() {
     int tc = 1;
     // cin>>tc;
     rep(test_case, 1, tc+1) {
-        int n;
+        ll n, mx = 0, sum = 0;
         cin>>n;
-        int a[n];
         rep(i, 0, n) {
-            cin>>a[i];
+            int x; cin>>x;
+            sum += x;
+            mx = max(mx, x);
         }
-        
-        pyn(solve(a, 0, n, 0, 0));
 
+        pyn(!((sum&1) || mx > (sum - mx)));
     }
 }

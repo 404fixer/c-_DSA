@@ -94,6 +94,7 @@
         "memory_resource": "cpp",
         "ranges": "cpp",
         "stop_token": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "span": "cpp"
     }
 }

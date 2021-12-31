@@ -58,6 +58,8 @@ int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
+
+    vector<ll> primes = sieve(20005);
     
     int tc = 1;
     cin>>tc;
@@ -65,16 +67,36 @@ int32_t main() {
         int n;
         cin>>n;
         int a[n];
+        ll sum = 0;
+        int idx = 0;
         rep(i, 0, n) {
             cin>>a[i];
+            sum += a[i];
+            if(a[i]%2) idx = i;
         }
 
-        rep(i, 0, n) {
-            int sum = 0;
-            rep(j, i, n) {
-                sum += a[j];
-                
+        vi res;
+        if(sum%2 == 0) {
+            rep(i, 1, n+1) res.pb(i);
+        } else {
+            auto itr = find(all(primes), sum);
+            if(itr == primes.end()) {
+                rep(i, 1, n+1) res.pb(i);
+            } else {
+                rep(i, 0, n) {
+                    if(i == idx) continue;
+
+                    res.pb(i+1);
+                }
             }
         }
+
+        cout<<res.size()<<endl;
+        for(auto x: res) {
+            cout<<x<<" ";
+        }
+        cout<<endl;
+
+        
     }
 }
